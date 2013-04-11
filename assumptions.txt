@@ -1,0 +1,6 @@
+working with inner classes is very hard
+had to create two get methods for private fields of Controller to use in CutListener
+criar hook methods
+alterar protected para public quando faz um intertype
+
+tivemos que usar reflection para contornar um problema com inner classes e evitar o hook method
