@@ -149,12 +149,12 @@ public class MainView extends JFrame {
 		this.setVisible(true);
 	}
 	
-	/**
-	 * refresh GUI for cut operation
-	 */
-	public void refresh() {
-		((AbstractView)currentView).refresh();
-	}
+//	/**
+//	 * refresh GUI for cut operation
+//	 */
+//	public void refresh() {
+//		((AbstractView)currentView).refresh();
+//	}
 
 	public void refreshTree() {
 		tree.repaint();

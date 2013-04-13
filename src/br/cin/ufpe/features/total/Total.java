@@ -1,4 +1,4 @@
-package org.softlang.operations;
+package br.cin.ufpe.features.total;
 
 import org.softlang.company.*;
 

@@ -2,9 +2,7 @@ package org.softlang.swing.model;
 
 import org.softlang.company.Basic;
 import org.softlang.company.Company;
-import org.softlang.company.Department;
 import org.softlang.company.Employee;
-import org.softlang.operations.Total;
 
 /**
  * The data model.
@@ -24,27 +22,27 @@ public class Model {
 		company = Company.readObject("sampleCompany.ser");
 	}
 
-	/**
-	 * This method returns the total value for the current company, department
-	 * or employee.
-	 * 
-	 * @return current total value
-	 */
-	public String getTotal() {
-		if (currentValue != null) {
-			if (currentValue.isCompany()) {
-				return Double.toString(Total.total((Company) currentValue));
-			} else if (currentValue.isDepartment()) {
-				return Double.toString(Total.total((Department) currentValue));
-			} else if (currentValue.isEmployee()) {
-				return Double.toString(Total.total((Employee) currentValue));
-			} else {
-				return "0";
-			}
-		} else {
-			return "0";
-		}
-	}
+//	/**
+//	 * This method returns the total value for the current company, department
+//	 * or employee.
+//	 * 
+//	 * @return current total value
+//	 */
+//	public String getTotal() {
+//		if (currentValue != null) {
+//			if (currentValue.isCompany()) {
+//				return Double.toString(Total.total((Company) currentValue));
+//			} else if (currentValue.isDepartment()) {
+//				return Double.toString(Total.total((Department) currentValue));
+//			} else if (currentValue.isEmployee()) {
+//				return Double.toString(Total.total((Employee) currentValue));
+//			} else {
+//				return "0";
+//			}
+//		} else {
+//			return "0";
+//		}
+//	}
 
 //	/**
 //	 * This method cuts the current company, department or employee.

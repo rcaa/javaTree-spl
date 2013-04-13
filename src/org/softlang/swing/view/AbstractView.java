@@ -20,7 +20,7 @@ public abstract class AbstractView extends JPanel {
 	
 	protected Model model;
 	protected JTextField name;
-	protected JTextField total;
+	//protected JTextField total;
 	//protected JButton cut;
 	
 	/**
@@ -31,7 +31,7 @@ public abstract class AbstractView extends JPanel {
 	public AbstractView(Model model) {
 		this.model = model;
 		name = new JTextField();
-		total = new JTextField();
+//		total = new JTextField();
 //		cut = new JButton("cut");
 	}
 	
@@ -44,12 +44,12 @@ public abstract class AbstractView extends JPanel {
 //		cut.addActionListener(listener);
 //	}
 	
-	/**
-	 * This method refreshs the total value after a cut.
-	 */
-	public void refresh() {
-		total.setText(model.getTotal());
-	}
+//	/**
+//	 * This method refreshs the total value after a cut.
+//	 */
+//	public void refresh() {
+//		total.setText(model.getTotal());
+//	}
 	
 	/**
 	 * This method adds the listener for the name field of the current view.

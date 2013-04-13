@@ -21,6 +21,8 @@ public class CompanyView extends AbstractView {
 	/** automatically generated serialVersionUID */
 	private static final long serialVersionUID = 4713058639510381461L;
 
+	private GridBagConstraints c;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -38,9 +40,40 @@ public class CompanyView extends AbstractView {
 	private void createView() {
 		Company company = (Company) model.getCurrentValue();
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
+		c = new GridBagConstraints();
+
 		// name
+		name(company);
+
+		// // total
+		// c.gridy = 1;
+		// c.gridx = 0;
+		// c.weightx = 0;
+		// c.fill = GridBagConstraints.NONE;
+		// this.add(new JLabel("Total: "), c);
+		//
+		// c.gridx = 1;
+		// c.weightx = 1;
+		// c.fill = GridBagConstraints.HORIZONTAL;
+		// total.setText(model.getTotal());
+		// total.setEditable(false);
+		// this.add(total, c);
+
+		// filler
+		filler();
+
+		// cut
+		// c.gridy = 2;
+		// c.gridx = 0;
+		// c.gridwidth = 2;
+		// c.weightx = 0;
+		// c.fill = GridBagConstraints.NONE;
+		// c.anchor = GridBagConstraints.CENTER;
+		// this.add(cut, c);
+
+	}
+
+	private void name(Company company) {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.insets = new Insets(10, 10, 0, 0);
@@ -52,34 +85,12 @@ public class CompanyView extends AbstractView {
 		c.weightx = 1;
 		name.setText(company.getName());
 		this.add(name, c);
+	}
 
-		// total
-		c.gridy = 1;
-		c.gridx = 0;
-		c.weightx = 0;
-		c.fill = GridBagConstraints.NONE;
-		this.add(new JLabel("Total: "), c);
-
-		c.gridx = 1;
-		c.weightx = 1;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		total.setText(model.getTotal());
-		total.setEditable(false);
-		this.add(total, c);
-		
-//		c.gridy = 2;
-//		c.gridx = 0;
-//		c.gridwidth = 2;
-//		c.weightx = 0;
-//		c.fill = GridBagConstraints.NONE;
-//		c.anchor = GridBagConstraints.CENTER;
-//		this.add(cut, c);
-
-		// filler
+	private void filler() {
 		c.gridy = 3;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.VERTICAL;
 		this.add(new JPanel(), c);
-
 	}
 }

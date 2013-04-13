@@ -16,17 +16,9 @@ import org.softlang.swing.view.AbstractView;
 import org.softlang.swing.view.CompanyView;
 import org.softlang.swing.view.DepartmentView;
 import org.softlang.swing.view.EmployeeView;
+import org.softlang.swing.view.MainView;
 
 public privileged aspect CutFeature {
-
-	private static GridBagConstraints cons;
-
-	pointcut newGridBagConstraints(CompanyView cthis) : call(GridBagConstraints.new(..)) 
-		&& withincode(private void CompanyView.createView()) && this(cthis) && if(cons == null);
-
-	after(CompanyView cthis) returning(GridBagConstraints c) : newGridBagConstraints(cthis) {
-		cons = c;
-	}
 
 	pointcut newAbstractView(AbstractView cthis) : execution(AbstractView.new(..)) && this(cthis);
 
@@ -59,31 +51,34 @@ public privileged aspect CutFeature {
 	}
 
 	pointcut createCompanyViewCut(CompanyView cthis) 
-	: execution(* CompanyView.createView(..)) && this(cthis);
+		: call(* CompanyView.filler(..)) && this(cthis) 
+		&& withincode(private void CompanyView.createView(..));
 
-	after(CompanyView cthis) returning() : createCompanyViewCut(cthis) {
-		createViewCut(cons);
-		cthis.add(cthis.cut, cons);
+	before(CompanyView cthis) : createCompanyViewCut(cthis) {
+		createViewCut(cthis.c, 2);
+		cthis.add(cthis.cut, cthis.c);
 	}
 
 	pointcut createDepartmentViewCut(DepartmentView cthis) 
-	: execution(* DepartmentView.createView(..)) && this(cthis);
+		: call(* DepartmentView.filler(..)) && this(cthis) 
+		&& withincode(private void DepartmentView.createView(..));
 
-	after(DepartmentView cthis) : createDepartmentViewCut(cthis) {
-		createViewCut(cons);
-		cthis.add(cthis.cut, cons);
+	before(DepartmentView cthis) : createDepartmentViewCut(cthis) {
+		createViewCut(cthis.c, 2);
+		cthis.add(cthis.cut, cthis.c);
 	}
 
 	pointcut createEmployeeViewCut(EmployeeView cthis) 
-	: execution(* EmployeeView.createView(..))&& this(cthis);
+		: call(* EmployeeView.filler(..)) && this(cthis) 
+		&& withincode(private void EmployeeView.createView(..));
 
-	after(EmployeeView cthis) : createEmployeeViewCut(cthis) {
-		createViewCut(cons);
-		cthis.add(cthis.cut, cons);
+	before(EmployeeView cthis) : createEmployeeViewCut(cthis) {
+		createViewCut(cthis.c, 3);
+		cthis.add(cthis.cut, cthis.c);
 	}
 
-	private void createViewCut(GridBagConstraints c) {
-		c.gridy = 3;
+	private void createViewCut(GridBagConstraints c, int gridy) {
+		c.gridy = gridy;
 		c.gridx = 0;
 		c.gridwidth = 2;
 		c.weightx = 0;
@@ -116,6 +111,13 @@ public privileged aspect CutFeature {
 	 */
 	public void AbstractView.addCutListener(ActionListener listener) {
 		cut.addActionListener(listener);
+	}
+
+	/**
+	 * refresh GUI for cut operation
+	 */
+	public void MainView.refresh() {
+		((AbstractView)currentView).refresh();
 	}
 
 	private class CutListener implements ActionListener {

@@ -24,7 +24,7 @@ public class EmployeeView extends AbstractView {
 	private static final long serialVersionUID = 6904484189795643748L;
 
 	private JTextField address;
-
+	private GridBagConstraints c;
 	/**
 	 * Constructor.
 	 * 
@@ -32,9 +32,7 @@ public class EmployeeView extends AbstractView {
 	 */
 	public EmployeeView(Model model) {
 		super(model);
-
 		address = new JTextField();
-
 		createView();
 	}
 
@@ -44,7 +42,7 @@ public class EmployeeView extends AbstractView {
 	private void createView() {
 		Employee employee = (Employee) model.getCurrentValue();
 		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		c = new GridBagConstraints();
 
 		// name
 		c.gridx = 0;
@@ -74,24 +72,16 @@ public class EmployeeView extends AbstractView {
 		this.add(address, c);
 
 		// salary
-		c.gridx = 0;
-		c.gridy = 2;
-		c.anchor = GridBagConstraints.WEST;
-		c.weightx = 0;
-		this.add(new JLabel("Salary: "), c);
-
-		c.gridx = 1;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 1;
-		total.setText(model.getTotal());
-		this.add(total, c);
-
-		// filler
-		c.gridy = 4;
-		c.weighty = 1;
-		c.fill = GridBagConstraints.VERTICAL;
-		this.add(new JPanel(), c);
+		salary();
 		
+		//total
+//		c.gridx = 1;
+//		c.fill = GridBagConstraints.HORIZONTAL;
+//		c.weightx = 1;
+//		total.setText(model.getTotal());
+//		this.add(total, c);
+		
+		//cut
 //		c.gridy = 2;
 //		c.gridx = 0;
 //		c.gridwidth = 2;
@@ -99,6 +89,25 @@ public class EmployeeView extends AbstractView {
 //		c.fill = GridBagConstraints.NONE;
 //		c.anchor = GridBagConstraints.CENTER;
 //		this.add(cut, c);
+
+		// filler
+		filler();
+		
+	}
+
+	private void salary() {
+		c.gridx = 0;
+		c.gridy = 2;
+		c.anchor = GridBagConstraints.WEST;
+		c.weightx = 0;
+		this.add(new JLabel("Salary: "), c);
+	}
+
+	private void filler() {
+		c.gridy = 4;
+		c.weighty = 1;
+		c.fill = GridBagConstraints.VERTICAL;
+		this.add(new JPanel(), c);
 	}
 
 	/**
@@ -118,6 +127,6 @@ public class EmployeeView extends AbstractView {
 	 * @param change listener
 	 */
 	public void addSalaryListener(KeyListener listener) {
-		total.addKeyListener(listener);
+		//total.addKeyListener(listener);
 	}
 }
